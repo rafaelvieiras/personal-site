@@ -1,4 +1,5 @@
-import Head from 'next/head'
+import Head from 'next/head';
+import Image from 'next/image';
 import { GetStaticProps } from 'next';
 
 export default function Home({name, username, bio, imageProfile}) {
@@ -11,7 +12,7 @@ export default function Home({name, username, bio, imageProfile}) {
 
       <main>
         <div className="avatar">
-          <img src={imageProfile} alt={`Foto ${name}`} />
+          <Image src={imageProfile} alt={`Foto ${name}`} width="300" height="300" />
         </div>
         <h1 className="title">
           {name}
@@ -39,12 +40,13 @@ export default function Home({name, username, bio, imageProfile}) {
           justify-content: center;
           align-items: center;
           width: 300px;
+          height: 300px;
           border-radius: 50%;
           overflow: hidden;
           box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
         }
 
-        .avatar img {
+        .avatar > img {
           max-width: 100%;
         }
 
