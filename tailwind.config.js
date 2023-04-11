@@ -16,5 +16,5 @@ module.exports = {
       serif: ["var(--font-roboto)", "serif"],
     },
   },
-  plugins: [require("daisyui")],
+  plugins: [require("@tailwindcss/typography"), require("daisyui")],
 };

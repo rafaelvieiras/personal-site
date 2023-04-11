@@ -4,6 +4,7 @@ import { GetStaticProps } from "next";
 import Link from "next/link";
 
 import { Roboto } from "next/font/google";
+import Sidebar from "../shared/Sidebar";
 
 const roboto = Roboto({
   weight: ["700", "400", "300", "100"],
@@ -28,86 +29,28 @@ export const getStaticProps: GetStaticProps = async () => {
 
 export default function Home({ name, username, bio, imageProfile }) {
   return (
-    <div className={`${roboto.variable} container`}>
+    <div
+      className={`${roboto.variable} flex flex-col sm:flex-row container mx-auto py-5`}
+    >
       <Head>
         <title>
-          {name} - Aka {username}
+          Desenvolvedor Freelancer e Consultor Web, Front-end, Back-end,
+          Full-Stack | Rafael Vieira - Aka Rafaelvieiras
         </title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <div>
-          <div className="avatar">
-            <Image
-              src={imageProfile}
-              alt={`Foto ${name}`}
-              width="300"
-              height="300"
-            />
-          </div>
-          <h1 className="title">
-            {name}
-            <small>search for {username}</small>
-          </h1>
-
-          <p className="description">{bio}</p>
-        </div>
-
-        <Link href="/conquiste-a-sua-vaga-como-desenvolvedor-de-software">
-          Conquiste a sua vaga como desenvolvedor de software
-        </Link>
+      <Sidebar />
+      <main className="w-full p-5 sm:p-0">
+        <Image
+          src="/setup.jpg"
+          alt="Imagem do Setup"
+          width="1000"
+          height="500"
+          className="w-full rounded-lg shadow-lg"
+        />
       </main>
 
       <footer></footer>
-
-      <style jsx>{`
-        .title {
-          font-size: 2em;
-          display: flex;
-          flex-direction: column;
-          text-align: center;
-        }
-        .avatar {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 300px;
-          height: 300px;
-          border-radius: 50%;
-          overflow: hidden;
-          box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.5);
-        }
-
-        .avatar > img {
-          max-width: 100%;
-        }
-      `}</style>
-
-      <style jsx global>{`
-        body,
-        html {
-          background-color: rgb(29, 31, 33);
-          color: #f8f8f2;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          height: fill-available;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace,
-            serif;
-          text-shadow: 0 1px rgb(0 0 0 / 30%);
-        }
-        main {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-        small {
-          opacity: 0.6;
-          font-size: 0.5em;
-        }
-      `}</style>
     </div>
   );
 }

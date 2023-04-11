@@ -4,12 +4,25 @@ import Image from "next/image";
 import { Roboto } from "next/font/google";
 import { useRef } from "react";
 import BuyModal from "../../shared/book/components/BuyModal";
+import Header from "../../shared/Header";
 
 const roboto = Roboto({
   weight: ["700", "400", "300", "100"],
   subsets: ["latin"],
   variable: "--font-roboto",
 });
+
+const gotTo = (url: string) => {
+  window.open(url, "_blank");
+};
+
+const sendEmail = () => {
+  gotTo("mailto:teste@teste.com");
+};
+
+const sendWhatsapp = () => {
+  gotTo("https://api.whatsapp.com/send?phone=5511999999999");
+};
 
 export default function LandingPageEbook() {
   const faq = [
@@ -49,51 +62,43 @@ export default function LandingPageEbook() {
   return (
     <>
       <Head>
-        <title>Conquiste a sua vaga como desenvolvedor de software</title>
+        <title>
+          Conquiste a sua vaga como desenvolvedor de software | Rafael Vieiras
+        </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
       <main
         className={`${roboto.variable} bg-[#2C2C2C] relative scroll-smooth flex flex-col gap-8`}
       >
-        <header className="flex bg-[#4E4E4E] sticky top-0 z-20">
-          <div className="flex container mx-auto justify-between py-5">
-            <div className="flex">
-              <Image
-                src="/book/logo.svg"
-                width={200}
-                height={200}
-                alt="RafaelVieiras Logo"
-              />
-            </div>
-            <nav className="flex">
-              <ul className="flex justify-between items-center uppercase gap-5 font-bold">
-                <li>
-                  <a href="#home">Home</a>
-                </li>
-                <li>
-                  <a href="#beneficios">Benefícios</a>
-                </li>
-                <li>
-                  <a href="#investimento">Investimento</a>
-                </li>
-                <li>
-                  <a href="#autor">Autor</a>
-                </li>
-                <li>
-                  <a href="#faq">FAQ</a>
-                </li>
-              </ul>
-            </nav>
+        <Header>
+          <nav className="flex">
+            <ul className="flex justify-between items-center uppercase gap-5 font-bold">
+              <li>
+                <a href="#home">Home</a>
+              </li>
+              <li>
+                <a href="#beneficios">Benefícios</a>
+              </li>
+              <li>
+                <a href="#investimento">Investimento</a>
+              </li>
+              <li>
+                <a href="#autor">Autor</a>
+              </li>
+              <li>
+                <a href="#faq">FAQ</a>
+              </li>
+            </ul>
+          </nav>
 
-            <button
-              onClick={openModal}
-              className="cursor-pointer flex justify-center items-center bg-red text-white uppercase shadow-md rounded px-5 font-sans text-md font-bold animate-bounce transition-all ease-in-out hover:animate-none hover:scale-110"
-            >
-              Comprar Ebook
-            </button>
-          </div>
-        </header>
+          <button
+            onClick={openModal}
+            className="cursor-pointer flex justify-center items-center bg-red text-white uppercase shadow-md rounded px-5 font-sans text-md font-bold animate-bounce transition-all ease-in-out hover:animate-none hover:scale-110"
+          >
+            Comprar Ebook
+          </button>
+        </Header>
 
         <section id="home">
           <div className="flex relative">
@@ -424,7 +429,54 @@ export default function LandingPageEbook() {
         </section>
       </main>
 
-      <footer className="flex bg-[#414042] justify-center py-5"></footer>
+      <footer className="flex bg-gradient-to-bl from-blue to-transparent justify-center py-5">
+        <div className="container flex mx-auto">
+          <div className="flex flex-col w-1/2 gap-5">
+            <span className="text-orange uppercase font-bold">
+              Duvidas e perguntas? Entre em contato:
+            </span>
+            <ul>
+              <li className="flex items-center gap-2">
+                <Image
+                  src="/icons/whatsapp.svg"
+                  width={20}
+                  height={20}
+                  alt="Whatsapp"
+                />
+                <button className="link" onClick={sendWhatsapp}>
+                  (11) 98888-8888
+                </button>
+              </li>
+              <li className="flex items-center gap-2">
+                <Image
+                  src="/icons/email.svg"
+                  width={20}
+                  height={20}
+                  alt="Email"
+                />
+                <button className="link" onClick={sendEmail}>
+                  {" "}
+                  Enviar Email
+                </button>
+              </li>
+              <li className="flex items-center gap-2">
+                <Image
+                  src="/icons/instagram.svg"
+                  width={20}
+                  height={20}
+                  alt="Instagram"
+                />
+                <a
+                  href="https://www.instagram.com/rafaelvieiras.dev/"
+                  target="_blank"
+                >
+                  @rafaelvieiras.dev
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </footer>
       <BuyModal ref={modalRef} />
     </>
   );
