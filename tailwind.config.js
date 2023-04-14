@@ -14,6 +14,8 @@ module.exports = {
     fontFamily: {
       sans: ["Open Sans", "sans-serif"],
       serif: ["var(--font-roboto)", "serif"],
+      montserrat: ["var(--font-montserrat)", "serif"],
+      ubuntu: ["var(--font-ubuntu)", "serif"],
     },
   },
   plugins: [require("@tailwindcss/typography"), require("daisyui")],

@@ -1,17 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { getLanguage } from "./lang/languages";
 
 export default function Sidebar() {
-  const callToWhatsApp = () => {
-    window.open("https://wa.me/5541999015649", "_blank");
-  };
-
-  const sendEmail = () => {
-    window.open("mailto:hello@rafaelvieiras.com", "_blank");
-  };
-
+  const { locale } = useRouter();
+  const translation = getLanguage(locale);
   return (
-    <aside className="flex flex-col w-full p-5 sm:max-w-xs sm:pr-5 gap-5">
+    <aside className="flex flex-col w-full font-montserrat lg:max-w-xs sm:pr-5 gap-6">
       <div className="flex flex-col gap-5">
         <Link href="/">
           <Image
@@ -22,43 +18,74 @@ export default function Sidebar() {
             className="w-55 h-55"
           />
         </Link>
-        <h2 className="text-4xl font-bold">Rafael Vieiras</h2>
+        <Link href="/">
+          <h2 className="text-4xl pt-14 pb-10 font-medium font-ubuntu">
+            Rafael Vieiras
+          </h2>
+        </Link>
+        <p>{translation.sidebar.DESCRIPTION}</p>
         <p>
-          Atualmente trabalho com desenvolvimento de sites e sistemas web,
-          utilizando as tecnologias mais modernas do mercado.
-        </p>
-        <p>
-          Atuo como:{" "}
-          <strong className="font-bold">Desenvolvedor Freelancer</strong>,{" "}
-          <strong className="font-bold">Consultor Web</strong>,{" "}
-          <strong className="font-bold">Front-end</strong>,{" "}
-          <strong className="font-bold">Back-end</strong>,{" "}
-          <strong className="font-bold">Full-Stack</strong>,{" "}
-          <strong className="font-bold">Full-Cycle</strong> e{" "}
-          <strong className="font-bold">Tech Lead</strong>.
+          {translation.sidebar.SKILLS_DESC}
+          {translation.sidebar.SKILLS.map((item, index) => (
+            <strong key={index} className="font-medium">
+              {`${item}${index === 6 ? "" : ","} `}
+            </strong>
+          ))}
         </p>
       </div>
-      <div className="border-b border-neutral-700"></div>
-      <div className="flex gap-5">
-        <button onClick={sendEmail}>
+      <div className="hidden lg:flex mt-14 border-b border-white"></div>
+      <div className="flex gap-5 self-center lg:self-start">
+        <Link href="https://github.com/rafaelvieiras" target="_blank">
           <Image
-            src="/icons/email.svg"
+            src="/icons/github.svg"
             alt="Github"
             width="30"
             height="30"
             className="invert"
           />
-        </button>
+        </Link>
+        <Link
+          href="https://www.instagram.com/rafaelvieiras.dev"
+          target="_blank"
+        >
+          <Image
+            src="/icons/instagram-fill.svg"
+            alt="Instagram"
+            width="30"
+            height="30"
+            className="invert"
+          />
+        </Link>
+        <Link href="https://www.linkedin.com/in/rafaelvieiras" target="_blank">
+          <Image
+            src="/icons/linkedin.svg"
+            alt="Linkedin"
+            width="30"
+            height="30"
+            className="invert"
+          />
+        </Link>
       </div>
 
-      <nav className="flex flex-col gap-3 pt-5">
-        <Link href="/sobre">Sobre</Link>
-        <Link href="/projetos">Projetos</Link>
-        <Link href="/contato">Contato</Link>
-        <Link href="/shop">Shop</Link>
-        <button className="btn" onClick={callToWhatsApp}>
-          Converse comigo
-        </button>
+      <nav className="flex flex-wrap justify-center items-center gap-6 pt-5 lg:flex-col lg:items-start">
+        {[
+          { name: translation.sidebar.LINKS.HOME, href: "/" },
+          { name: translation.sidebar.LINKS.ABOUT, href: "/about" },
+          // { name: "Projetos", href: "/projects" },
+          { name: translation.sidebar.LINKS.CONTACT, href: "/contact" },
+          { name: translation.sidebar.LINKS.SHOP, href: "/shop" },
+        ].map((item, index) => (
+          <Link
+            key={index}
+            href={item.href}
+            className="flex items-center font-bold"
+          >
+            {item.name}
+          </Link>
+        ))}
+        <Link className="btn w-full lg:mt-5 lg:w-auto" href="/contact">
+          {translation.sidebar.ACTION}
+        </Link>
       </nav>
     </aside>
   );

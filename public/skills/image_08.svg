@@ -1,0 +1,19 @@
+<svg width="172" height="178" viewBox="0 0 172 178" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="0.5" y="0.5" width="137" height="137" stroke="url(#paint0_linear_36_4)" stroke-opacity="0.5"/>
+<rect x="-0.5" y="0.5" width="137" height="137" transform="matrix(-1 0 0 1 154 20)" stroke="url(#paint1_linear_36_4)" stroke-opacity="0.5"/>
+<rect x="34.5" y="40.5" width="137" height="137" stroke="url(#paint2_linear_36_4)" stroke-opacity="0.5"/>
+<defs>
+<linearGradient id="paint0_linear_36_4" x1="69" y1="0" x2="69" y2="138" gradientUnits="userSpaceOnUse">
+<stop stop-color="white" stop-opacity="0.96"/>
+<stop offset="1" stop-color="white" stop-opacity="0.35"/>
+</linearGradient>
+<linearGradient id="paint1_linear_36_4" x1="69" y1="0" x2="69" y2="138" gradientUnits="userSpaceOnUse">
+<stop stop-color="white" stop-opacity="0.96"/>
+<stop offset="1" stop-color="white" stop-opacity="0.35"/>
+</linearGradient>
+<linearGradient id="paint2_linear_36_4" x1="103" y1="40" x2="103" y2="178" gradientUnits="userSpaceOnUse">
+<stop stop-color="white" stop-opacity="0.96"/>
+<stop offset="1" stop-color="white" stop-opacity="0.35"/>
+</linearGradient>
+</defs>
+</svg>

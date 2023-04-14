@@ -1,16 +1,10 @@
 import Head from "next/head";
 import Image from "next/image";
 
-import { Roboto } from "next/font/google";
 import { useRef } from "react";
 import BuyModal from "../../shared/book/components/BuyModal";
 import Header from "../../shared/Header";
-
-const roboto = Roboto({
-  weight: ["700", "400", "300", "100"],
-  subsets: ["latin"],
-  variable: "--font-roboto",
-});
+import { roboto } from "../../shared/libs/fonts";
 
 const gotTo = (url: string) => {
   window.open(url, "_blank");

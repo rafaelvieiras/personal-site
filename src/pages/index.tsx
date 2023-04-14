@@ -1,53 +1,43 @@
 import Head from "next/head";
 import Image from "next/image";
-import { GetStaticProps } from "next";
-import Link from "next/link";
-
-import { Roboto } from "next/font/google";
 import Sidebar from "../shared/Sidebar";
+import { roboto } from "../shared/libs/fonts";
+import { useRouter } from "next/router";
+import { getLanguage } from "../shared/lang/languages";
 
-const roboto = Roboto({
-  weight: ["700", "400", "300", "100"],
-  subsets: ["latin"],
-  variable: "--font-roboto",
-});
+export default function Home() {
+  const { locale } = useRouter();
+  const translation = getLanguage(locale);
 
-export const getStaticProps: GetStaticProps = async () => {
-  const response = await fetch(`https://api.github.com/users/rafaelvieiras`);
-  const data = await response.json();
-
-  // console.warn(data);
-  return {
-    props: {
-      name: data.name,
-      username: data.login,
-      bio: data.bio,
-      imageProfile: data.avatar_url,
-    },
-  };
-};
-
-export default function Home({ name, username, bio, imageProfile }) {
   return (
     <div
-      className={`${roboto.variable} flex flex-col sm:flex-row container mx-auto py-5`}
+      className={`${roboto.variable} flex flex-col lg:flex-row container mx-auto py-5`}
     >
       <Head>
-        <title>
-          Desenvolvedor Freelancer e Consultor Web, Front-end, Back-end,
-          Full-Stack | Rafael Vieira - Aka Rafaelvieiras
-        </title>
+        <title>{translation.home.TITLE}</title>
       </Head>
 
       <Sidebar />
-      <main className="w-full p-5 sm:p-0">
-        <Image
-          src="/setup.jpg"
-          alt="Imagem do Setup"
-          width="1000"
-          height="500"
-          className="w-full rounded-lg shadow-lg"
-        />
+      <main className="hidden lg:flex items-start relative w-full pb-10 pt-32 overflow-hidden">
+        <div className="absolute top-0 right-0">
+          <Image
+            src="/bg_square.svg"
+            alt="Logo"
+            width="644"
+            height="644"
+            className="w-auto"
+          />
+        </div>
+        <div className="hidden lg:flex relative w-full">
+          <Image
+            src="/bg_image.jpg"
+            alt="Imagem do Setup"
+            width="1000"
+            height="500"
+            className="w-full max-h-full object-contain rounded-lg rounded-tr-none rounded-br-none"
+          />
+          <div className="absolute w-full h-full border border-white top-6 left-10 -z-10 rounded-lg rounded-tr-none rounded-br-none"></div>
+        </div>
       </main>
 
       <footer></footer>
