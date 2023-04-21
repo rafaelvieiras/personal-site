@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 
 import { useRef } from "react";
 import BuyModal from "../../shared/book/components/BuyModal";
@@ -10,12 +11,10 @@ const gotTo = (url: string) => {
   window.open(url, "_blank");
 };
 
-const sendEmail = () => {
-  gotTo("mailto:teste@teste.com");
-};
-
 const sendWhatsapp = () => {
-  gotTo("https://api.whatsapp.com/send?phone=5511999999999");
+  gotTo(
+    `https://api.whatsapp.com/send?phone=${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`
+  );
 };
 
 export default function LandingPageEbook() {
@@ -57,60 +56,69 @@ export default function LandingPageEbook() {
     <>
       <Head>
         <title>
-          Conquiste a sua vaga como desenvolvedor de software | Rafael Vieiras
+          Livro: Conquiste a sua vaga como Dev - Desenvolvedor de Software |
+          Rafael Vieiras
         </title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+          name="description"
+          content="Conquiste a sua vaga como Dev - Desenvolvedor de Software é um livro que vai te ajudar a conquistar o emprego dos seus sonhos na área de tecnologia."
+        />
+        <meta
+          name="keywords"
+          content="livro, conquiste, sua, vaga, dev, desenvolvedor, software, rafael, vieiras"
+        />
+        <meta name="author" content="Rafael Vieiras" />
+        <meta name="robots" content="index, follow" />
+        <meta name="language" content="Portuguese" />
+        <meta name="revisit-after" content="7 days" />
+        <meta name="rating" content="general" />
+        <meta name="distribution" content="global" />
       </Head>
 
       <main
-        className={`${roboto.variable} bg-[#2C2C2C] relative scroll-smooth flex flex-col gap-8`}
+        className={`${roboto.variable} relative scroll-smooth flex flex-col gap-4 md:gap-8`}
       >
-        <Header>
-          <nav className="flex">
-            <ul className="flex justify-between items-center uppercase gap-5 font-bold">
-              <li>
-                <a href="#home">Home</a>
-              </li>
-              <li>
-                <a href="#beneficios">Benefícios</a>
-              </li>
-              <li>
-                <a href="#investimento">Investimento</a>
-              </li>
-              <li>
-                <a href="#autor">Autor</a>
-              </li>
-              <li>
-                <a href="#faq">FAQ</a>
-              </li>
-            </ul>
-          </nav>
-
-          <button
-            onClick={openModal}
-            className="cursor-pointer flex justify-center items-center bg-red text-white uppercase shadow-md rounded px-5 font-sans text-md font-bold animate-bounce transition-all ease-in-out hover:animate-none hover:scale-110"
-          >
-            Comprar Ebook
-          </button>
+        <Header
+          action={
+            <a
+              href="#investimento-compra"
+              className="cursor-pointer flex justify-center items-center bg-red text-white uppercase shadow-md rounded px-5 py-2 font-sans text-md font-bold animate-bounce transition-all ease-in-out hover:animate-none hover:scale-110 hover:-translate-x-1 z-20"
+            >
+              Comprar Ebook
+            </a>
+          }
+        >
+          <li>
+            <a href="#beneficios">Benefícios</a>
+          </li>
+          <li>
+            <a href="#investimento-compra">Investimento</a>
+          </li>
+          <li>
+            <a href="#autor">Autor</a>
+          </li>
+          <li>
+            <a href="#faq">FAQ</a>
+          </li>
         </Header>
 
         <section id="home">
           <div className="flex relative">
-            <div className="flex justify-between container items-center mx-auto z-10">
-              <div className="flex flex-col w-7/12 items-start bg-[#2C2C2C] bg-opacity-30 py-14 gap-7 px-14 shadow-md">
-                <h1 className="flex flex-col text-4xl text-white font-bold z-10">
+            <div className="flex flex-col-reverse justify-between container items-center mx-auto z-10 md:flex-row">
+              <div className="flex flex-col items-start gap-5 md:bg-base-300 md:bg-opacity-30 md:shadow-md md:py-14 md:gap-7 md:px-14 md:w-7/12">
+                <h1 className="flex flex-col text-3xl md:text-4xl text-white font-bold z-10">
                   <span>Conquiste a sua vaga como</span>
                   <span className="text-green">desenvolvedor de software</span>
                 </h1>
                 <p className="text-1xl text-white font-serif">
-                  Com o nosso ebook "Como conseguir um emprego na área de
-                  desenvolvimento de software: Dicas e estratégias para se
-                  destacar em entrevistas e testes técnicos", você vai aprender
-                  como se preparar para as entrevistas e testes técnicos.
+                  Com o nosso ebook "Conquiste sua vaga como Dev", você vai
+                  aprender como se preparar para as entrevistas e testes
+                  técnicos, com dicas e estratégias para se destacar.
                 </p>
 
-                <button
-                  onClick={openModal}
+                <a
+                  href="#investimento-compra"
                   className="flex justify-center items-center cursor-pointer gap-2 bg-red text-white text-1xl font-bold uppercase shadow-md rounded p-4  transition-all ease-in-out hover:scale-110"
                 >
                   quero meu exemplar agora!
@@ -120,19 +128,19 @@ export default function LandingPageEbook() {
                     height={16}
                     alt="Seta para a direita"
                   />
-                </button>
+                </a>
               </div>
-              <div className="flex w-5/12">
+              <div className="flex md:w-5/12 z-10">
                 <Image
                   src="/book/capa.svg"
-                  width={800}
-                  height={900}
+                  width={802}
+                  height={913}
                   alt="Capa do ebook 'Conquiste a sua vaga como desenvolvedor de software'"
-                  className="w-full"
+                  className="w-full z-10"
                 />
               </div>
             </div>
-            <div className="absolute left-0 bottom-0 -z-0">
+            <div className="hidden md:flex absolute left-0 bottom-0 -z-0">
               <Image
                 src="/book/blob-1.svg"
                 width={400}
@@ -144,8 +152,8 @@ export default function LandingPageEbook() {
         </section>
 
         <section id="beneficios" className="relative">
-          <div className="flex container mx-auto py-20">
-            <div className="flex flex-col w-1/2 gap-5">
+          <div className="flex flex-col py-5 md:flex-row container mx-auto md:py-20">
+            <div className="flex flex-col w-full md:w-1/2 gap-5">
               <span className="text-orange uppercase font-bold">
                 benefícios
               </span>
@@ -161,10 +169,10 @@ export default function LandingPageEbook() {
                 />
               </div>
             </div>
-            <div className="flex flex-col w-1/2 gap-8 z-10">
-              <div className="flex flex-row gap-5">
-                <div className="flex w-1/2 text-white text-xl flex-col justify-center gap-5 text-center">
-                  <div className="flex flex-col gap-5 p-10 bg-grafiti shadow-md rounded">
+            <div className="flex flex-col w-full md:w-1/2 gap-8 z-10">
+              <div className="flex flex-col md:flex-row gap-5">
+                <div className="flex md:w-1/2 text-white text-xl flex-col justify-center gap-5 text-center">
+                  <div className="flex flex-col gap-5 p-10 bg-base-300 shadow-md rounded">
                     <Image
                       src="/book/beneficios-1.svg"
                       width={77}
@@ -180,7 +188,7 @@ export default function LandingPageEbook() {
                       de experiência no mercado de desenvolvimento de software
                     </p>
                   </div>
-                  <div className="flex flex-col gap-5 p-10 bg-grafiti shadow-md rounded">
+                  <div className="flex flex-col gap-5 p-10 bg-base-300 shadow-md rounded">
                     <Image
                       src="/book/beneficios-2.svg"
                       width={77}
@@ -197,8 +205,8 @@ export default function LandingPageEbook() {
                     </p>
                   </div>
                 </div>
-                <div className="flex w-1/2 text-white text-xl flex-col gap-5 text-center">
-                  <div className="flex flex-col gap-5 p-10 bg-grafiti shadow-md rounded">
+                <div className="flex md:w-1/2 text-white text-xl flex-col gap-5 text-center">
+                  <div className="flex flex-col gap-5 p-10 bg-base-300 shadow-md rounded">
                     <Image
                       src="/book/beneficios-3.svg"
                       width={77}
@@ -220,7 +228,7 @@ export default function LandingPageEbook() {
                       </span>
                     </p>
                   </div>
-                  <div className="flex flex-col gap-5 p-10 bg-grafiti shadow-md rounded">
+                  <div className="flex flex-col gap-5 p-10 bg-base-300 shadow-md rounded">
                     <Image
                       src="/book/beneficios-4.svg"
                       width={77}
@@ -229,10 +237,11 @@ export default function LandingPageEbook() {
                       className="self-center"
                     />
                     <p className="">
-                      Exemplos de currículos e portfólios para se inspirar
+                      <strong>🆓 BONUS! ✨</strong> Exemplos de currículos e
+                      portfólios para se inspirar
                     </p>
                   </div>
-                  <div className="flex flex-col gap-5 p-10 bg-grafiti shadow-md rounded">
+                  <div className="flex flex-col gap-5 p-10 bg-base-300 shadow-md rounded">
                     <Image
                       src="/book/beneficios-5.svg"
                       width={77}
@@ -241,7 +250,8 @@ export default function LandingPageEbook() {
                       className="self-center"
                     />
                     <p className="">
-                      Preparação para testes técnicos com{" "}
+                      <strong>🆓 BONUS! ✨</strong> Preparação para testes
+                      técnicos com{" "}
                       <span className="font-bold text-orange-light">
                         exercícios práticos
                       </span>
@@ -249,12 +259,15 @@ export default function LandingPageEbook() {
                   </div>
                 </div>
               </div>
-              <button className="flex justify-center items-center gap-2 bg-red text-white text-2xl font-bold uppercase shadow-md rounded p-4 transition-all ease-in-out hover:scale-110">
+              <a
+                href="#investimento-compra"
+                className="flex justify-center items-center gap-2 bg-red text-white text-2xl font-bold uppercase shadow-md rounded p-4 transition-all ease-in-out hover:scale-110"
+              >
                 quero garantir meu exemplar
-              </button>
+              </a>
             </div>
           </div>
-          <div className="absolute right-0 top-72 -z-0">
+          <div className="hidden md:flex absolute right-0 top-72 -z-0">
             <Image
               src="/book/blob-2.svg"
               width={200}
@@ -264,11 +277,11 @@ export default function LandingPageEbook() {
           </div>
         </section>
 
-        <section id="investimento" className="relative py-36">
-          <div className="flex w-full bg-gradient-to-bl from-blue to-transparent relative z-10">
+        <section id="investimento" className="relative py-12 md:py-36">
+          <div className="flex w-full bg-gradient-to-bl md:from-[#00c9f629] to-transparent relative z-10">
             <div className="absolute top-0 right-0 left-0 h-1 from-[#27B2C7] to-transparent bg-gradient-to-r z-10"></div>
-            <div className="container flex mx-auto">
-              <div className="flex flex-col w-1/2 gap-5 py-10 text-white">
+            <div className="container flex flex-col md:flex-row mx-auto">
+              <div className="flex flex-col md:w-1/2 gap-5 py-10 text-white">
                 <span className="text-orange uppercase font-bold">
                   investimento
                 </span>
@@ -302,17 +315,25 @@ export default function LandingPageEbook() {
                 </div>
               </div>
 
-              <div className="flex flex-col w-1/2 gap-5 text-white font-sans pt-10 relative">
-                <div className="flex flex-col absolute top-[20%] items-center  max-w-2xl gap-5 w-full border-[#00D1FF] border-[0.25rem] rounded">
-                  <div className="flex flex-col items-center px-20 py-14 gap-5 w-full bg-[#69edffc4]">
-                    <h4 className="text-4xl font-bold font-sans">
-                      Oferta Exclusiva
-                    </h4>
-                    <span className="text-2xl">Por apenas:</span>
-                    <div className="flex items-center justify-center p-10 my-8 bg-orange rounded-md shadow-md">
-                      <span className="text-8xl font-bold">R$ 49,00</span>
+              <div
+                className="flex flex-col md:w-1/2 gap-5 text-white font-sans pt-10 relative z-10"
+                id="investimento-compra"
+              >
+                <div className="flex flex-col md:absolute md:top-[-10%] md:h-[120%] items-center max-w-2xl gap-5 w-full border-[#00D1FF] border-[0.25rem] rounded">
+                  <div className="flex flex-col justify-between items-center p-5 md:px-20 md:py-14 gap-5 w-full h-full bg-[#52bfc5e5]">
+                    <div className="text-center">
+                      <h4 className="text-4xl font-bold font-sans">
+                        Oferta Exclusiva
+                      </h4>
+                      <span className="text-2xl">Por apenas:</span>
                     </div>
-                    <button className="flex w-full justify-center items-center gap-2 bg-red text-white text-2xl font-bold uppercase shadow-md rounded p-4 transition-all ease-in-out hover:scale-110">
+                    <div className="flex items-center justify-center p-10 my-8 bg-[#F08D2B] rounded-md shadow-md">
+                      <span className="text-6xl font-bold">R$ 49,00</span>
+                    </div>
+                    <button
+                      onClick={openModal}
+                      className="flex w-full justify-center items-center gap-2 bg-red text-white text-2xl font-bold uppercase shadow-md rounded p-4 transition-all ease-in-out hover:scale-110"
+                    >
                       quero comprar o meu
                     </button>
                   </div>
@@ -320,7 +341,7 @@ export default function LandingPageEbook() {
               </div>
             </div>
           </div>
-          <div className="absolute h-full left-0 top-10 -z-0">
+          <div className="hidden md:flex absolute h-full left-0 top-10 -z-0">
             <Image
               src="/book/blob-3.svg"
               width={200}
@@ -331,21 +352,23 @@ export default function LandingPageEbook() {
           </div>
         </section>
 
-        <section id="autor" className="relative py-36">
-          <div className="flex container gap-5 mx-auto">
-            <div className="flex flex-col w-1/2 gap-5">
+        <section id="autor" className="relative py-12 md:py-36">
+          <div className="flex flex-col md:flex-row container gap-5 mx-auto">
+            <div className="flex flex-col md:w-1/2 gap-5">
               <span className="text-orange uppercase font-bold">Autor</span>
               <h2 className="text-4xl text-white font-bold">
                 Quem escreveu esse livro?
               </h2>
-              <div className="flex flex-col font-serif text-xl text-white font-normal gap-3">
+              <div className="flex flex-col font-serif text-xl text-white font-normal gap-8">
                 <p>
                   Rafael Vieiras é um experiente desenvolvedor de software, com
-                  mais de <b className="text-orange">13 anos</b> de carreira e
-                  diversas conquistas em seu currículo. Ele trabalhou em algumas
-                  das empresas mais renomadas do mercado, como <i>Banco Bari</i>{" "}
-                  e RCI Brasil, onde liderou a arquitetura de dois Internet
-                  Banking, além do
+                  mais de <b className="text-orange">15 anos</b> de carreira e
+                  diversas conquistas em seu currículo.
+                </p>
+                <p>
+                  Ele trabalhou em algumas das empresas mais renomadas do
+                  mercado, como <i>Banco Bari</i> e RCI Brasil, onde liderou a
+                  arquitetura de dois Internet Banking, além do{" "}
                   <i>James Delivery</i> onde liderou e participou da{" "}
                   <b className="text-orange">contratação de desenvolvedores</b>.
                 </p>
@@ -354,8 +377,11 @@ export default function LandingPageEbook() {
                   exatamente o que é necessário para{" "}
                   <b className="text-orange">se destacar</b> em um mercado
                   altamente competitivo e conquistar a vaga dos sonhos como
-                  desenvolvedor. Além disso, ele é um comunicador habilidoso e
-                  sabe transmitir suas ideias de forma clara e acessível.
+                  desenvolvedor.
+                </p>
+                <p>
+                  Além disso, ele é um comunicador habilidoso e sabe transmitir
+                  suas ideias de forma clara e acessível.
                 </p>
                 <p>
                   Se você está{" "}
@@ -363,30 +389,34 @@ export default function LandingPageEbook() {
                   valiosos de alguém que realmente sabe do que está falando, não
                   precisa procurar mais do que Rafael Vieiras e seu livro{" "}
                   <b className="text-orange">"Conquiste sua vaga como Dev"</b>.
+                </p>
+                <p>
                   Com sua vasta experiência, paixão pela tecnologia e habilidade
                   em transmitir conhecimento, ele é a escolha certa para
-                  ajudá-lo a alcançar seus objetivos como desenvolvedor. Não
-                  perca <b className="text-orange">a oportunidade</b> de
+                  ajudá-lo a alcançar seus objetivos como desenvolvedor.
+                </p>
+                <p>
+                  Não perca <b className="text-orange">a oportunidade</b> de
                   aprender com um dos melhores profissionais do mercado e
                   conquistar a vaga que você tanto deseja.
                 </p>
               </div>
             </div>
-            <div className="flex w-1/2">
+            <div className="flex justify-center">
               <Image
                 src="/book/rafaelvieiras.svg"
                 width={400}
                 height={400}
                 alt="Autor"
-                className="self-center w-full"
+                className="self-center w-2/3"
               />
             </div>
           </div>
         </section>
 
-        <section id="faq" className="relative py-36">
-          <div className="flex container gap-5 mx-auto">
-            <div className="flex flex-col w-1/2 gap-5">
+        <section id="faq" className="flex flex-col relative py-12 md:py-36">
+          <div className="flex flex-col md:flex-row container gap-5 mx-auto">
+            <div className="flex flex-col md:w-1/2 py-5 gap-5">
               <span className="text-orange uppercase font-bold">FAQ</span>
               <h2 className="text-4xl text-white font-bold">
                 Perguntas frequentes
@@ -396,17 +426,17 @@ export default function LandingPageEbook() {
                 width={400}
                 height={400}
                 alt="Autor"
-                className="self-center w-full"
+                className="self-center w-2/3"
               />
             </div>
-            <div className="flex w-1/2 items-center-center">
-              <div className="flex flex-col w-full p-5 gap-5">
+            <div className="flex md:w-1/2 items-center-center">
+              <div className="flex flex-col w-full md:p-5 gap-5">
                 {faq.map((item, i) => {
                   return (
                     <div
                       key={i}
                       tabIndex={0}
-                      className="collapse collapse-arrow border text-white border-base-300 bg-[#353535] rounded-md shadow-md p-5"
+                      className="collapse collapse-arrow border text-white border-base-300 bg-base-300 rounded-md shadow-md p-5"
                     >
                       <div className="collapse-title text-xl font-medium">
                         {item.pergunta}
@@ -420,55 +450,69 @@ export default function LandingPageEbook() {
               </div>
             </div>
           </div>
+          <a
+            href="#investimento-compra"
+            className="flex flex-col md:flex-row justify-center items-center self-center gap-2 bg-red text-white text-2xl font-bold uppercase shadow-md rounded p-4 my-2 transition-all ease-in-out hover:scale-110"
+          >
+            quero conquistar minha vaga!
+            <Image
+              src="/book/arrow-right.svg"
+              width={16}
+              height={16}
+              alt="Seta para a direita"
+            />
+          </a>
         </section>
       </main>
-
-      <footer className="flex bg-gradient-to-bl from-blue to-transparent justify-center py-5">
-        <div className="container flex mx-auto">
-          <div className="flex flex-col w-1/2 gap-5">
-            <span className="text-orange uppercase font-bold">
-              Duvidas e perguntas? Entre em contato:
-            </span>
-            <ul>
-              <li className="flex items-center gap-2">
-                <Image
-                  src="/icons/whatsapp.svg"
-                  width={20}
-                  height={20}
-                  alt="Whatsapp"
-                />
-                <button className="link" onClick={sendWhatsapp}>
-                  (11) 98888-8888
-                </button>
-              </li>
-              <li className="flex items-center gap-2">
-                <Image
-                  src="/icons/email.svg"
-                  width={20}
-                  height={20}
-                  alt="Email"
-                />
-                <button className="link" onClick={sendEmail}>
-                  {" "}
-                  Enviar Email
-                </button>
-              </li>
-              <li className="flex items-center gap-2">
-                <Image
-                  src="/icons/instagram.svg"
-                  width={20}
-                  height={20}
-                  alt="Instagram"
-                />
-                <a
-                  href="https://www.instagram.com/rafaelvieiras.dev/"
-                  target="_blank"
-                >
-                  @rafaelvieiras.dev
-                </a>
-              </li>
-            </ul>
+      <footer className="footer footer-center p-10 bg-base-200 text-base-content rounded">
+        <div className="grid md:grid-flow-col gap-4">
+          <Link href="/contact" className="link link-hover">
+            Contato
+          </Link>
+          <button
+            onClick={sendWhatsapp}
+            className="link link-success border p-2 rounded-sm hover:text-lg hover:bg-success hover:scale-105 hover:translate-y-1 hover:text-base-100 transition-all"
+          >
+            Me envie um Whatsapp
+          </button>
+          <Link href="/terms/privacy" className="link link-hover">
+            Termos de Privacidade
+          </Link>
+          <Link href="/terms/use" className="link link-hover">
+            Termos de Uso
+          </Link>
+        </div>
+        <div>
+          <div className="grid grid-flow-col gap-4">
+            <Link href="https://twitter.com/rafaelvieiras" target="_blank">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                className="fill-current"
+              >
+                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path>
+              </svg>
+            </Link>
+            <Link
+              href="https://www.youtube.com/channel/UCfLkfgM45ZYyMzwSo6BtVjA"
+              target="_blank"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                className="fill-current"
+              >
+                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
+              </svg>
+            </Link>
           </div>
+        </div>
+        <div>
+          <p>Creative Commons 2023 </p>
         </div>
       </footer>
       <BuyModal ref={modalRef} />

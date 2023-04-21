@@ -1,4 +1,6 @@
-export const en = {
+import { ITranslationsKeys } from "./languages";
+
+export const en: ITranslationsKeys = {
   sidebar: {
     DESCRIPTION:
       "Currently, I work with website and web systems development, using the most modern technologies available in the market.",
@@ -33,5 +35,10 @@ export const en = {
   },
   shop: {
     TITLE: "Products of Rafael Vieiras - Aka Rafaelvieiras",
+  },
+  cookiesModal: {
+    DESCRIPTION: "We use cookies to improve your browsing experience.",
+    CLOSE: "Close",
+    POLICY: "Privacy Policy",
   },
 };

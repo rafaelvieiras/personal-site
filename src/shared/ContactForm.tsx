@@ -18,7 +18,6 @@ export default function ContactForm() {
   };
 
   const onReCAPTCHAChange = (captchaCode) => {
-    console.log("Captcha value:", captchaCode);
     setLoading(false);
     // If the reCAPTCHA code is null or undefined indicating that
     // the reCAPTCHA was expired then return early

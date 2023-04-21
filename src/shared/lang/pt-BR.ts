@@ -1,4 +1,6 @@
-export const ptBR = {
+import { ITranslationsKeys } from "./languages";
+
+export const ptBR: ITranslationsKeys = {
   sidebar: {
     DESCRIPTION:
       "Atualmente trabalho com desenvolvimento de sites e sistemas web, utilizando as tecnologias mais modernas do mercado.",
@@ -33,5 +35,11 @@ export const ptBR = {
   },
   shop: {
     TITLE: "Produtos de Rafael Vieiras - Aka Rafaelvieiras",
+  },
+  cookiesModal: {
+    DESCRIPTION:
+      "Nos usamos cookies para melhorar a sua experiência de navegação.",
+    CLOSE: "Fechar",
+    POLICY: "Política de Privacidade",
   },
 };

@@ -23,7 +23,7 @@ export default function Home() {
           <Image
             src="/bg_square.svg"
             alt="Logo"
-            width="644"
+            width="628"
             height="644"
             className="w-auto"
           />
@@ -32,8 +32,8 @@ export default function Home() {
           <Image
             src="/bg_image.jpg"
             alt="Imagem do Setup"
-            width="1000"
-            height="500"
+            width="1216"
+            height="859"
             className="w-full max-h-full object-contain rounded-lg rounded-tr-none rounded-br-none"
           />
           <div className="absolute w-full h-full border border-white top-6 left-10 -z-10 rounded-lg rounded-tr-none rounded-br-none"></div>

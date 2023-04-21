@@ -1,8 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable jsx-a11y/alt-text */
 // Next.js _document.tsx
 
 import Document, { Html, Head, Main, NextScript } from "next/document";
-import Script from "next/script";
 import { montserrat, roboto, ubuntu } from "../shared/libs/fonts";
+import { FB_PIXEL_ID } from "../shared/libs/fpixel";
 
 export default class MyDocument extends Document {
   render() {
@@ -35,14 +37,14 @@ export default class MyDocument extends Document {
           />
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff"></meta>
-          <Script
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=G-SSY6S5VK3C"
-            strategy="afterInteractive"
-          ></Script>
-          <Script id="google-analytics" strategy="afterInteractive">
-            {`window.dataLayer = window.dataLayer || [];function gtag(){window.dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-SSY6S5VK3C');`}
-          </Script>
+          <noscript>
+            <img
+              height="1"
+              width="1"
+              style={{ display: "none" }}
+              src={`https://www.facebook.com/tr?id=${FB_PIXEL_ID}&ev=PageView&noscript=1`}
+            />
+          </noscript>
         </Head>
         <body
           className={`${roboto.variable} ${montserrat.variable} ${ubuntu.variable} p-3 sm:p-5 lg:p-0`}

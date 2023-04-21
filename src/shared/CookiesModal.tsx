@@ -1,11 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { getLanguage } from "./lang/languages";
 
 export default function CookiesModal() {
   const [showModal, setShowModal] = useState(false);
+  const { locale } = useRouter();
+  const translation = getLanguage(locale);
 
-  const acceptCookies = () => {
+  const closeCookies = () => {
     if (typeof window !== "undefined") {
       setShowModal(false);
       window.localStorage.setItem("cookies", "accept");
@@ -21,9 +25,9 @@ export default function CookiesModal() {
   return (
     <>
       {showModal && (
-        <div className="fixed right-0 bottom-4 px-20 ease-in-out transition-all scale-100 hover:scale-105">
+        <div className="fixed right-0 bottom-0 md:bottom-4 md:px-20 ease-in-out transition-all md:hover:scale-105 z-50">
           <div>
-            <div className="bg-base-300 rounded-lg shadow-md p-6">
+            <div className="bg-base-300 md:rounded-lg shadow-md p-3 md:p-6">
               <div className="w-16 mx-auto relative -mt-10 mb-3">
                 <Image
                   className="-mt-1"
@@ -33,19 +37,19 @@ export default function CookiesModal() {
                   alt="Cookie Icon SVG"
                 />
               </div>
-              <span className="w-full sm:w-48 block leading-normal text-gray-800 text-md mb-3">
-                Nos usamos cookies para melhorar a sua experiência de navegação.
+              <span className="w-full md:w-48 block leading-normal text-gray-800 text-md mb-3">
+                {translation.cookiesModal.DESCRIPTION}
               </span>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-5">
                 <Link
                   className="text-xs text-gray-400 mr-1 hover:text-gray-800"
                   href="/terms/privacy"
                 >
-                  Politicas de privacidade
+                  {translation.cookiesModal.POLICY}
                 </Link>
-                <div className="w-1/2">
-                  <button onClick={acceptCookies} className="btn">
-                    Aceitar
+                <div>
+                  <button onClick={closeCookies} className="btn">
+                    {translation.cookiesModal.CLOSE}
                   </button>
                 </div>
               </div>

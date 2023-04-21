@@ -17,6 +17,11 @@ export interface ITranslationsKeys {
     };
     ACTION: string;
   };
+  cookiesModal: {
+    DESCRIPTION: string;
+    CLOSE: string;
+    POLICY: string;
+  };
   home: {
     TITLE: string;
   };
