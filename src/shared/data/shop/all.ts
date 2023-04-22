@@ -5,6 +5,6 @@ export const allProducts = [
     url: "/conquiste-a-sua-vaga-como-desenvolvedor-de-software",
     description:
       "Você está cansado de não conseguir uma vaga de emprego como desenvolvedor de software? Então, esse ebook é para você! Nesse ebook, eu vou te mostrar como você pode conquistar a sua vaga como desenvolvedor de software.",
-    image: "/book/capa.svg",
+    image: "/book/capa.png",
   },
 ];

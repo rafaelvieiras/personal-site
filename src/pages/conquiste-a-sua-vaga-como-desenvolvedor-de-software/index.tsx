@@ -130,11 +130,12 @@ export default function LandingPageEbook() {
                   />
                 </a>
               </div>
-              <div className="flex md:w-5/12 z-10">
+              <div className="flex p-5 md:w-5/12 z-10">
                 <Image
-                  src="/book/capa.svg"
-                  width={802}
-                  height={913}
+                  src="/book/capa.png"
+                  width={669}
+                  height={811}
+                  loading="eager"
                   alt="Capa do ebook 'Conquiste a sua vaga como desenvolvedor de software'"
                   className="w-full z-10"
                 />
@@ -321,14 +322,16 @@ export default function LandingPageEbook() {
               >
                 <div className="flex flex-col md:absolute md:top-[-10%] md:h-[120%] items-center max-w-2xl gap-5 w-full border-[#00D1FF] border-[0.25rem] rounded">
                   <div className="flex flex-col justify-between items-center p-5 md:px-20 md:py-14 gap-5 w-full h-full bg-[#52bfc5e5]">
-                    <div className="text-center">
-                      <h4 className="text-4xl font-bold font-sans">
+                    <div className="flex flex-col text-center text-base-100">
+                      <span className="text-4xl font-bold font-sans">
                         Oferta Exclusiva
-                      </h4>
+                      </span>
                       <span className="text-2xl">Por apenas:</span>
                     </div>
                     <div className="flex items-center justify-center p-10 my-8 bg-[#F08D2B] rounded-md shadow-md">
-                      <span className="text-6xl font-bold">R$ 49,00</span>
+                      <span className="text-6xl font-bold text-base-100">
+                        R$ 49,00
+                      </span>
                     </div>
                     <button
                       onClick={openModal}
@@ -404,10 +407,10 @@ export default function LandingPageEbook() {
             </div>
             <div className="flex justify-center">
               <Image
-                src="/book/rafaelvieiras.svg"
-                width={400}
-                height={400}
-                alt="Autor"
+                src="/book/rafaelvieiras.png"
+                width={493}
+                height={403}
+                alt="Foto do Autor Rafael Vieiras"
                 className="self-center w-2/3"
               />
             </div>
@@ -484,7 +487,11 @@ export default function LandingPageEbook() {
         </div>
         <div>
           <div className="grid grid-flow-col gap-4">
-            <Link href="https://twitter.com/rafaelvieiras" target="_blank">
+            <Link
+              href="https://twitter.com/rafaelvieiras"
+              target="_blank"
+              aria-label="Twitter do autor"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -497,6 +504,7 @@ export default function LandingPageEbook() {
             </Link>
             <Link
               href="https://www.youtube.com/channel/UCfLkfgM45ZYyMzwSo6BtVjA"
+              aria-label="Youtube do autor"
               target="_blank"
             >
               <svg

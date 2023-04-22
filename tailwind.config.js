@@ -18,5 +18,8 @@ module.exports = {
       ubuntu: ["var(--font-ubuntu)", "serif"],
     },
   },
+  daisyui: {
+    themes: ["dark"],
+  },
   plugins: [require("@tailwindcss/typography"), require("daisyui")],
 };

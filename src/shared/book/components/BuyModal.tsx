@@ -150,7 +150,12 @@ function BuyModal(_props: any, ref: Ref<unknown>) {
     <div>
       <label className="hidden" ref={labelRef} htmlFor="buy-modal"></label>
 
-      <input type="checkbox" id="buy-modal" className="modal-toggle" />
+      <input
+        aria-label="Input ignorável para controle da modal"
+        type="checkbox"
+        id="buy-modal"
+        className="modal-toggle"
+      />
       <div className="modal">
         <canvas
           className="w-screen h-screen top-0 left-0 fixed z-auto"

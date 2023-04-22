@@ -12,12 +12,14 @@
     "@tailwindcss/typography": "^0.5.9",
     "@types/canvas-confetti": "^1.6.0",
     "canvas-confetti": "^1.6.0",
+    "cssnano": "^6.0.0",
     "daisyui": "^2.50.2",
     "mangle-css-class-webpack-plugin": "^5.0.9",
     "next": "^13.1.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-google-recaptcha": "^2.1.0"
+    "react-google-recaptcha": "^2.1.0",
+    "sharp": "^0.32.0"
   },
   "devDependencies": {
     "@types/node": "^18.14.0",
