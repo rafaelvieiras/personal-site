@@ -74,6 +74,27 @@ export default function LandingPageEbook() {
         <meta name="revisit-after" content="7 days" />
         <meta name="rating" content="general" />
         <meta name="distribution" content="global" />
+
+        <meta
+          property="og:title"
+          content="Livro: Conquiste a sua vaga como Dev"
+        />
+        <meta
+          property="og:description"
+          content="Conquiste a sua vaga como Dev - Desenvolvedor de Software é um livro que vai te ajudar a conquistar o emprego dos seus sonhos na área de tecnologia."
+        />
+        <meta property="og:image" content="/book/og-image.png" />
+        <meta property="og:url" content="https://rafaelvieiras.com.br" />
+        <meta property="og:site_name" content="Rafael Vieiras" />
+        <meta property="og:type" content="website" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@rafaelvieiras" />
+        <meta name="twitter:creator" content="@rafaelvieiras" />
+        <meta
+          name="twitter:title"
+          content="Livro: Conquiste a sua vaga como Dev - Desenvolvedor de Software"
+        />
       </Head>
 
       <main
