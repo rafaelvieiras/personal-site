@@ -62,7 +62,7 @@ export default function LandingPageEbook() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta
           name="description"
-          content="Conquiste a sua vaga como Dev - Desenvolvedor de Software é um livro que vai te ajudar a conquistar o emprego dos seus sonhos na área de tecnologia."
+          content="Conquiste a sua vaga como Dev é um livro que vai te ajudar a conquistar o emprego dos seus sonhos na área de tecnologia."
         />
         <meta
           name="keywords"

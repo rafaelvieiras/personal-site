@@ -6,7 +6,7 @@ module.exports = {
     defaultLocale: "en",
   },
   images: {
-    domains: ["avatars.githubusercontent.com"],
+    domains: ["avatars.githubusercontent.com", "images.prismic.io"],
   },
   webpack: (config, { isServer }) => {
     config.plugins.push(
@@ -16,5 +16,8 @@ module.exports = {
       })
     );
     return config;
+  },
+  experimental: {
+    serverComponentsExternalPackages: ["shiki", "vscode-oniguruma"],
   },
 };

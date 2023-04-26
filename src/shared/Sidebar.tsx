@@ -73,6 +73,7 @@ export default function Sidebar() {
           { name: translation.sidebar.LINKS.ABOUT, href: "/about" },
           // { name: "Projetos", href: "/projects" },
           { name: translation.sidebar.LINKS.CONTACT, href: "/contact" },
+          { name: translation.sidebar.LINKS.BLOG, href: "/blog" },
           { name: translation.sidebar.LINKS.SHOP, href: "/shop" },
         ].map((item, index) => (
           <Link

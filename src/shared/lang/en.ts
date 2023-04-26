@@ -19,6 +19,7 @@ export const en: ITranslationsKeys = {
       ABOUT: "About",
       CONTACT: "Contact",
       SHOP: "Shop",
+      BLOG: "Blog",
     },
     ACTION: "Talk To Me",
   },

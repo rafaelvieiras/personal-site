@@ -1,0 +1,159 @@
+{
+  "id": "blog_post",
+  "label": "Blog Post",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "title": {
+        "type": "StructuredText",
+        "config": {
+          "single": "heading1",
+          "label": "Titulo"
+        }
+      },
+      "date_publisher": {
+        "type": "Date",
+        "config": {
+          "label": "date_publisher"
+        }
+      },
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "Slug"
+        }
+      },
+      "cover": {
+        "type": "Image",
+        "config": {
+          "constraint": {
+            "width": 830
+          },
+          "thumbnails": [
+            {
+              "name": "medium",
+              "width": 715,
+              "height": null
+            },
+            {
+              "name": "small",
+              "width": 376,
+              "height": null
+            },
+            {
+              "name": "tiny",
+              "width": 5,
+              "height": null
+            }
+          ],
+          "label": "Imagem de Destaque"
+        }
+      },
+      "seo_description": {
+        "type": "Text",
+        "config": {
+          "label": "seo_description"
+        }
+      },
+      "seo_keywords": {
+        "type": "Text",
+        "config": {
+          "label": "seo_keywords"
+        }
+      },
+      "seo_title": {
+        "type": "Text",
+        "config": {
+          "label": "seo_title"
+        }
+      },
+      "body": {
+        "type": "Slices",
+        "fieldset": "Slice zone",
+        "config": {
+          "labels": null,
+          "choices": {
+            "teste": {
+              "type": "Slice",
+              "fieldset": "Texto",
+              "description": "Bloco de Texto Normal",
+              "icon": "format_align_left",
+              "display": "list",
+              "non-repeat": {
+                "texto": {
+                  "type": "StructuredText",
+                  "config": {
+                    "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl",
+                    "allowTargetBlank": true,
+                    "label": "Texto"
+                  }
+                }
+              },
+              "repeat": {}
+            },
+            "code": {
+              "type": "Slice",
+              "fieldset": "Code",
+              "description": "Bloco de Código",
+              "icon": "code",
+              "display": "list",
+              "non-repeat": {
+                "code": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "preformatted",
+                    "allowTargetBlank": true,
+                    "label": "Code"
+                  }
+                }
+              },
+              "repeat": {}
+            },
+            "image": {
+              "type": "Slice",
+              "fieldset": "image",
+              "description": "Imagem",
+              "icon": "image",
+              "display": "list",
+              "non-repeat": {
+                "image": {
+                  "type": "Image",
+                  "config": {
+                    "constraint": {
+                      "width": 1024
+                    },
+                    "thumbnails": [
+                      {
+                        "name": "container",
+                        "width": 830,
+                        "height": null
+                      },
+                      {
+                        "name": "medium",
+                        "width": 640,
+                        "height": null
+                      },
+                      {
+                        "name": "small",
+                        "width": 320,
+                        "height": null
+                      },
+                      {
+                        "name": "tiny",
+                        "width": 5,
+                        "height": null
+                      }
+                    ],
+                    "label": "Imagem"
+                  }
+                }
+              },
+              "repeat": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

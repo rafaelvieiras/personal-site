@@ -31,9 +31,10 @@ export default function Header({ children, action }) {
         </div>
         <Link href="/" className="normal-case text-xl">
           <Image
-            src="/logo.svg"
+            src="/logo.png"
             width={200}
-            height={200}
+            height={34}
+            priority
             alt="RafaelVieiras Logo"
           />
         </Link>

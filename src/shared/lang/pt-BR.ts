@@ -19,6 +19,7 @@ export const ptBR: ITranslationsKeys = {
       ABOUT: "Sobre",
       CONTACT: "Contato",
       SHOP: "Loja",
+      BLOG: "Blog",
     },
     ACTION: "Converse Comigo",
   },

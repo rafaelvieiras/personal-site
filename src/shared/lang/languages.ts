@@ -13,6 +13,7 @@ export interface ITranslationsKeys {
       HOME: string;
       ABOUT: string;
       CONTACT: string;
+      BLOG: string;
       SHOP: string;
     };
     ACTION: string;
