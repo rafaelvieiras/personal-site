@@ -17,18 +17,27 @@ const calculateTimeToRead = (text: string) => {
   return readTime;
 };
 
-export async function getStaticPaths() {
+export async function getStaticPaths({ locales }) {
   const client = createClient();
   const posts = await client.getAllByType("blog_post", {
     pageSize: 20,
   });
 
+  const paths = [];
+
+  locales.forEach((locale) => {
+    posts.forEach((post) => {
+      paths.push({
+        params: {
+          slug: post.uid,
+        },
+        locale,
+      });
+    });
+  });
+
   return {
-    paths: posts.map((post) => ({
-      params: {
-        slug: post.uid,
-      },
-    })),
+    paths,
     fallback: true,
   };
 }

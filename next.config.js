@@ -17,7 +17,4 @@ module.exports = {
     );
     return config;
   },
-  experimental: {
-    serverComponentsExternalPackages: ["shiki", "vscode-oniguruma"],
-  },
 };

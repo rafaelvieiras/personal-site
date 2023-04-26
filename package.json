@@ -26,8 +26,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-google-recaptcha": "^2.1.0",
-    "sharp": "^0.32.0",
-    "shiki": "^0.14.1"
+    "sharp": "^0.32.0"
   },
   "devDependencies": {
     "@prismicio/types": "^0.2.7",
