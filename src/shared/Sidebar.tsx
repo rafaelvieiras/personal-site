@@ -1,11 +1,14 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { getLanguage } from "./lang/languages";
+import { ITranslationsKeys } from "@/lang/languages";
 
-export default function Sidebar() {
-  const { locale } = useRouter();
-  const translation = getLanguage(locale);
+interface SidebarProps {
+  translation: ITranslationsKeys;
+}
+
+export default function Sidebar({ translation }: SidebarProps) {
   return (
     <aside className="flex flex-col w-full font-montserrat lg:max-w-xs sm:pr-5 gap-6">
       <div className="flex flex-col gap-5">

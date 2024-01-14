@@ -1,5 +1,7 @@
+"use client";
+
 import confetti from "canvas-confetti";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { forwardRef, Ref, useImperativeHandle, useRef, useState } from "react";
 function BuyModal(_props: any, ref: Ref<unknown>) {
   const [name, setName] = useState<string | Error>("");
@@ -9,8 +11,8 @@ function BuyModal(_props: any, ref: Ref<unknown>) {
   const [feedback, setFeedback] = useState<undefined | any>();
 
   const router = useRouter();
-  const canvasRef = useRef(null);
-  const labelRef = useRef(null);
+  const canvasRef = useRef<any>(null);
+  const labelRef = useRef<any>(null);
   const [confettiStarted, setConfettiStarted] = useState(false);
   const myConfetti = confetti.create(canvasRef.current, {
     resize: true,
@@ -45,7 +47,7 @@ function BuyModal(_props: any, ref: Ref<unknown>) {
 
   const openModal = () => {
     console.log("open modal");
-    labelRef.current.click();
+    labelRef.current?.click();
     if (!confettiStarted) {
       fireConfetti();
       setConfettiStarted(true);
@@ -133,7 +135,7 @@ function BuyModal(_props: any, ref: Ref<unknown>) {
       });
 
       setTimeout(() => {
-        router.push(process.env.NEXT_PUBLIC_BOOK_URL);
+        router.push(process.env.NEXT_PUBLIC_BOOK_URL ?? "");
       }, 2000);
     } catch (error) {
       setFeedback({

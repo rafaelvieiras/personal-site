@@ -45,7 +45,10 @@ export function checkIfLanguageExists(language: string): boolean {
   return Object.keys(translations).includes(language);
 }
 
-export function getLanguage(language: string): ITranslationsKeys {
+export function getLanguage(language: string | undefined): ITranslationsKeys {
+  if (!language) {
+    return en;
+  }
   if (!checkIfLanguageExists(language)) {
     console.error(`Language "${language}" not found`);
     return translations["pt-BR"];

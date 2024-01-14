@@ -1,21 +1,53 @@
-import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
 
-import { useRef } from "react";
-import BuyModal from "../../shared/book/components/BuyModal";
-import Header from "../../shared/Header";
-import { roboto } from "../../shared/libs/fonts";
-
-const gotTo = (url: string) => {
-  window.open(url, "_blank");
+import { roboto } from "@/shared/libs/fonts";
+import { BookHeader } from "@/book/components/BookHeader";
+import { BookBuyModalButton } from "@/book/components/BookBuyModalButton";
+import { BookFooter } from "@/book/components/BookFooter";
+import { Metadata, Viewport } from "next";
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1.0,
 };
 
-const sendWhatsapp = () => {
-  gotTo(
-    `https://api.whatsapp.com/send?phone=${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`
-  );
-};
+export async function generateMetadata({
+  params: { slug },
+}): Promise<Metadata> {
+  const title =
+    "Livro: Conquiste a sua vaga como Dev - Desenvolvedor de Software | Rafael Vieiras";
+  const description =
+    "Conquiste a sua vaga como Dev é um livro que vai te ajudar a conquistar o emprego dos seus sonhos na área de tecnologia.";
+  return {
+    metadataBase: new URL("https://rafaelvieiras.com.br"),
+    title: `${title}  | Rafaelvieiras`,
+    description,
+    keywords:
+      "livro, conquiste, sua, vaga, dev, desenvolvedor, software, rafael, vieiras",
+    alternates: {
+      canonical: `/conquiste-a-sua-vaga-como-desenvolvedor-de-software`,
+    },
+
+    authors: [
+      {
+        name: "Rafael Vieiras",
+      },
+    ],
+    robots: "index, follow",
+    openGraph: {
+      type: "website",
+      title: "Livro: Conquiste a sua vaga como Dev",
+      description:
+        "Conquiste a sua vaga como Dev - Desenvolvedor de Software é um livro que vai te ajudar a conquistar o emprego dos seus sonhos na área de tecnologia.",
+      url: "/conquiste-a-sua-vaga-como-desenvolvedor-de-software",
+      siteName: "Rafaelvieiras",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: title,
+      description,
+    },
+  };
+}
 
 export default function LandingPageEbook() {
   const faq = [
@@ -47,82 +79,12 @@ export default function LandingPageEbook() {
     },
   ];
 
-  const modalRef = useRef(null);
-  const openModal = () => {
-    modalRef.current.openModal();
-  };
-
   return (
     <>
-      <Head>
-        <title>
-          Livro: Conquiste a sua vaga como Dev - Desenvolvedor de Software |
-          Rafael Vieiras
-        </title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta
-          name="description"
-          content="Conquiste a sua vaga como Dev é um livro que vai te ajudar a conquistar o emprego dos seus sonhos na área de tecnologia."
-        />
-        <meta
-          name="keywords"
-          content="livro, conquiste, sua, vaga, dev, desenvolvedor, software, rafael, vieiras"
-        />
-        <meta name="author" content="Rafael Vieiras" />
-        <meta name="robots" content="index, follow" />
-        <meta name="language" content="Portuguese" />
-        <meta name="revisit-after" content="7 days" />
-        <meta name="rating" content="general" />
-        <meta name="distribution" content="global" />
-
-        <meta
-          property="og:title"
-          content="Livro: Conquiste a sua vaga como Dev"
-        />
-        <meta
-          property="og:description"
-          content="Conquiste a sua vaga como Dev - Desenvolvedor de Software é um livro que vai te ajudar a conquistar o emprego dos seus sonhos na área de tecnologia."
-        />
-        <meta property="og:image" content="/book/og-image.png" />
-        <meta property="og:url" content="https://rafaelvieiras.com.br" />
-        <meta property="og:site_name" content="Rafael Vieiras" />
-        <meta property="og:type" content="website" />
-
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@rafaelvieiras" />
-        <meta name="twitter:creator" content="@rafaelvieiras" />
-        <meta
-          name="twitter:title"
-          content="Livro: Conquiste a sua vaga como Dev - Desenvolvedor de Software"
-        />
-      </Head>
-
       <main
         className={`${roboto.variable} relative scroll-smooth flex flex-col gap-4 md:gap-8`}
       >
-        <Header
-          action={
-            <a
-              href="#investimento-compra"
-              className="cursor-pointer flex justify-center items-center bg-red text-white uppercase shadow-md rounded px-5 py-2 font-sans text-md font-bold animate-bounce transition-all ease-in-out hover:animate-none hover:scale-110 hover:-translate-x-1 z-20"
-            >
-              Comprar Ebook
-            </a>
-          }
-        >
-          <li>
-            <a href="#beneficios">Benefícios</a>
-          </li>
-          <li>
-            <a href="#investimento-compra">Investimento</a>
-          </li>
-          <li>
-            <a href="#autor">Autor</a>
-          </li>
-          <li>
-            <a href="#faq">FAQ</a>
-          </li>
-        </Header>
+        <BookHeader />
 
         <section id="home">
           <div className="flex relative">
@@ -354,12 +316,7 @@ export default function LandingPageEbook() {
                         R$ 49,00
                       </span>
                     </div>
-                    <button
-                      onClick={openModal}
-                      className="flex w-full justify-center items-center gap-2 bg-red text-white text-2xl font-bold uppercase shadow-md rounded p-4 transition-all ease-in-out hover:scale-110"
-                    >
-                      quero comprar o meu
-                    </button>
+                    <BookBuyModalButton />
                   </div>
                 </div>
               </div>
@@ -488,63 +445,7 @@ export default function LandingPageEbook() {
           </a>
         </section>
       </main>
-      <footer className="footer footer-center p-10 bg-base-200 text-base-content rounded">
-        <div className="grid md:grid-flow-col gap-4">
-          <Link href="/contact" className="link link-hover">
-            Contato
-          </Link>
-          <button
-            onClick={sendWhatsapp}
-            className="link link-success border p-2 rounded-sm hover:text-lg hover:bg-success hover:scale-105 hover:translate-y-1 hover:text-base-100 transition-all"
-          >
-            Me envie um Whatsapp
-          </button>
-          <Link href="/terms/privacy" className="link link-hover">
-            Termos de Privacidade
-          </Link>
-          <Link href="/terms/use" className="link link-hover">
-            Termos de Uso
-          </Link>
-        </div>
-        <div>
-          <div className="grid grid-flow-col gap-4">
-            <Link
-              href="https://twitter.com/rafaelvieiras"
-              target="_blank"
-              aria-label="Twitter do autor"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                className="fill-current"
-              >
-                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path>
-              </svg>
-            </Link>
-            <Link
-              href="https://www.youtube.com/channel/UCfLkfgM45ZYyMzwSo6BtVjA"
-              aria-label="Youtube do autor"
-              target="_blank"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                className="fill-current"
-              >
-                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
-              </svg>
-            </Link>
-          </div>
-        </div>
-        <div>
-          <p>Creative Commons 2023 </p>
-        </div>
-      </footer>
-      <BuyModal ref={modalRef} />
+      <BookFooter />
     </>
   );
 }

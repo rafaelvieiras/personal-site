@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 
@@ -9,12 +10,12 @@ export default function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<string | Error>("");
 
-  const recaptchaRef = useRef(null);
+  const recaptchaRef = useRef<any>(null);
 
   const validateForm = (e) => {
     e.preventDefault();
     setLoading(true);
-    recaptchaRef.current.execute();
+    recaptchaRef.current?.execute();
   };
 
   const onReCAPTCHAChange = (captchaCode) => {

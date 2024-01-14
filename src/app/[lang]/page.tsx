@@ -1,23 +1,27 @@
-import Head from "next/head";
 import Image from "next/image";
-import Sidebar from "../shared/Sidebar";
-import { roboto } from "../shared/libs/fonts";
-import { useRouter } from "next/router";
-import { getLanguage } from "../shared/lang/languages";
 
-export default function Home() {
-  const { locale } = useRouter();
-  const translation = getLanguage(locale);
+import { getLanguage } from "@/shared/lang/languages";
+import Sidebar from "@/shared/Sidebar";
+import { roboto } from "@/shared/libs/fonts";
+import { Metadata } from "next";
+
+export async function generateMetadata({
+  params: { lang },
+}): Promise<Metadata> {
+  const translation = getLanguage(lang);
+  return {
+    title: translation.home.TITLE,
+  };
+}
+
+export default async function Home({ params: { lang } }) {
+  const translation = getLanguage(lang);
 
   return (
     <div
       className={`${roboto.variable} flex flex-col lg:flex-row container mx-auto py-5`}
     >
-      <Head>
-        <title>{translation.home.TITLE}</title>
-      </Head>
-
-      <Sidebar />
+      <Sidebar translation={translation} />
       <main className="hidden lg:flex items-start relative w-full pb-10 pt-32 overflow-hidden">
         <div className="absolute top-0 right-0">
           <Image

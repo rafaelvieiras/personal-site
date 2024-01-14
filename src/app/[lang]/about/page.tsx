@@ -1,14 +1,20 @@
-import Head from "next/head";
-
-import Sidebar from "../shared/Sidebar";
-import { roboto } from "../shared/libs/fonts";
+import Sidebar from "@/shared/Sidebar";
+import { roboto } from "@/libs/fonts";
 import Image from "next/image";
-import { useRouter } from "next/router";
-import { getLanguage } from "../shared/lang/languages";
+import { getLanguage } from "@/lang/languages";
+import { Metadata } from "next";
 
-export default function Home() {
-  const { locale } = useRouter();
-  const translation = getLanguage(locale);
+export async function generateMetadata({
+  params: { lang },
+}): Promise<Metadata> {
+  const translation = getLanguage(lang);
+  return {
+    title: translation.about.TITLE,
+  };
+}
+
+export default function Home({ params: { lang } }) {
+  const translation = getLanguage(lang);
   const skills = [
     {
       title: "Front-end",
@@ -129,9 +135,6 @@ export default function Home() {
     <div
       className={`${roboto.variable} flex flex-col container mx-auto py-5 lg:flex-row`}
     >
-      <Head>
-        <title>{translation.about.TITLE}</title>
-      </Head>
       <div id="top" className="absolute top-0 right-0">
         <Image
           src="/bg_union.svg"
@@ -141,7 +144,7 @@ export default function Home() {
           className="w-full"
         />
       </div>
-      <Sidebar />
+      <Sidebar translation={translation} />
       <main className="w-full py-5 lg:pt-32 max-w-5xl">
         <div className="flex flex-col gap-6 max-w-5xl">
           <h1 className="text-4xl font-ubuntu font-medium pb-10">

@@ -1,29 +1,29 @@
 import Head from "next/head";
 import Image from "next/image";
-import { useRouter } from "next/router";
-import ContactForm from "../shared/ContactForm";
-import { getLanguage } from "../shared/lang/languages";
-import { roboto } from "../shared/libs/fonts";
-import Sidebar from "../shared/Sidebar";
+import ContactForm from "@/shared/ContactForm";
+import { getLanguage } from "@/shared/lang/languages";
+import { roboto } from "@/shared/libs/fonts";
+import Sidebar from "@/shared/Sidebar";
+import { Metadata } from "next";
 
-export default function Contato() {
-  const { locale } = useRouter();
-  const translation = getLanguage(locale);
+export async function generateMetadata({
+  params: { lang },
+}): Promise<Metadata> {
+  const translation = getLanguage(lang);
+  return {
+    title: translation.contact.TITLE,
+    description:
+      "Entre em contato com Rafael Vieiras, um desenvolvedor de software experiente e apaixonado por tecnologia. Com mais de 15 anos de experiência em desenvolvimento de software, Rafael está pronto para ajudá-lo a criar a solução perfeita para sua empresa ou organização.",
+    keywords: "desenvolvedor de software, front-end, back-end, aplicações web",
+  };
+}
+
+export default function Contato({ params: { lang } }) {
+  const translation = getLanguage(lang);
   return (
     <div
       className={`${roboto.variable} flex flex-col container mx-auto py-5 lg:flex-row`}
     >
-      <Head>
-        <title>{translation.contact.TITLE}</title>
-        <meta
-          name="description"
-          content="Entre em contato com Rafael Vieiras, um desenvolvedor de software experiente e apaixonado por tecnologia. Com mais de 15 anos de experiência em desenvolvimento de software, Rafael está pronto para ajudá-lo a criar a solução perfeita para sua empresa ou organização."
-        />
-        <meta
-          name="keywords"
-          content="desenvolvedor de software, front-end, back-end, aplicações web"
-        />
-      </Head>
       <div className="absolute top-0 right-0">
         <Image
           src="/bg_union.svg"
@@ -33,7 +33,7 @@ export default function Contato() {
           className="w-full"
         />
       </div>
-      <Sidebar />
+      <Sidebar translation={translation} />
       <main className="flex flex-col gap-5 w-full py-5 lg:p-0 lg:pt-32 ">
         <h1 className="w-full text-3xl font-bold lg:text-left lg:pb-11">
           Entre em contato e vamos criar algo incrível juntos!

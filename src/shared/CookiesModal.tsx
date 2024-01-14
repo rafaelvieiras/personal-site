@@ -1,13 +1,17 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { getLanguage } from "./lang/languages";
+import { ITranslationsKeys } from "@/lang/languages";
 
-export default function CookiesModal() {
+interface CookiesModalProps {
+  translation: ITranslationsKeys;
+}
+
+export default function CookiesModal({ translation }: CookiesModalProps) {
   const [showModal, setShowModal] = useState(false);
-  const { locale } = useRouter();
-  const translation = getLanguage(locale);
 
   const closeCookies = () => {
     if (typeof window !== "undefined") {

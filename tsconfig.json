@@ -15,8 +15,18 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@/*": ["./src/*"]
-    }
+      "@/shared/*": ["./src/shared/*"],
+      "@/book/*": ["./src/shared/book/*"],
+      "@/libs/*": ["./src/shared/libs/*"],
+      "@/interfaces/*": ["./src/shared/interfaces/*"],
+      "@/lang/*": ["./src/shared/lang/*"]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "strictNullChecks": true
   },
   "include": [
     "next-env.d.ts",
@@ -24,7 +34,8 @@
     "src/shared/types.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "next.config.js"
+    "next.config.js",
+    ".next/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }

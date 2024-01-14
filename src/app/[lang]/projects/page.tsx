@@ -1,9 +1,11 @@
 import Head from "next/head";
-import { allProjects } from "../../shared/data/projects/all";
-import ProjectsList from "../../shared/ProjectsList";
-import Sidebar from "../../shared/Sidebar";
+import { allProjects } from "@/shared/data/projects/all";
+import ProjectsList from "@/shared/ProjectsList";
+import Sidebar from "@/shared/Sidebar";
+import { getLanguage } from "@/lang/languages";
 
-export default function Contato() {
+export default function Contato({ params: { lang } }) {
+  const translation = getLanguage(lang);
   return (
     <div className={`flex flex-col container mx-auto py-5 sm:flex-row`}>
       <Head>
@@ -17,7 +19,7 @@ export default function Contato() {
           content="desenvolvedor de software, front-end, back-end, aplicações web"
         />
       </Head>
-      <Sidebar />
+      <Sidebar translation={translation} />
       <main className="flex flex-col gap-5 w-full p-5 sm:p-0 ">
         <header className="flex flex-row justify-between pt-32">
           <h1 className="text-3xl font-bold text-center sm:text-left">

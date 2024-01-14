@@ -1,28 +1,27 @@
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { allProducts } from "../shared/data/shop/all";
-import { getLanguage } from "../shared/lang/languages";
-import Sidebar from "../shared/Sidebar";
+import { allProducts } from "@/shared/data/shop/all";
+import { getLanguage } from "@/lang/languages";
+import Sidebar from "@/shared/Sidebar";
+import { Metadata } from "next";
 
-export default function Contato() {
-  const { locale } = useRouter();
-  const translation = getLanguage(locale);
+export async function generateMetadata({
+  params: { lang },
+}): Promise<Metadata> {
+  const translation = getLanguage(lang);
+  return {
+    title: translation.shop.TITLE,
+    description:
+      "Compre os produtos de Rafael Vieiras, um desenvolvedor de software experiente e apaixonado por tecnologia.",
+    keywords: "desenvolvedor de software, front-end, back-end, aplicações web",
+  };
+}
+
+export default function Contato({ params: { lang } }) {
+  const translation = getLanguage(lang);
   return (
     <div className={`flex flex-col container mx-auto py-5 lg:flex-row`}>
-      <Head>
-        <title>{translation.shop.TITLE}</title>
-        <meta
-          name="description"
-          content="Compre os produtos de Rafael Vieiras, um desenvolvedor de software experiente e apaixonado por tecnologia."
-        />
-        <meta
-          name="keywords"
-          content="desenvolvedor de software, front-end, back-end, aplicações web"
-        />
-      </Head>
-      <Sidebar />
+      <Sidebar translation={translation} />
       <main className="flex flex-col gap-5 w-full p-5 sm:p-0 ">
         <header className="flex flex-col lg:flex-row justify-between lg:pt-32">
           <h1 className="text-3xl font-bold lg:text-center sm:text-left py-5 lg:pb-11">

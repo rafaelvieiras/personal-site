@@ -1,12 +1,19 @@
 const MangleCssClassPlugin = require("mangle-css-class-webpack-plugin");
 
 module.exports = {
-  i18n: {
-    locales: ["en", "pt-BR"],
-    defaultLocale: "en",
-  },
   images: {
-    domains: ["avatars.githubusercontent.com", "images.prismic.io"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.prismic.io",
+        port: "",
+      },
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+        port: "",
+      },
+    ],
   },
   webpack: (config, { isServer }) => {
     config.plugins.push(
