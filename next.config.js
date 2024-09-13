@@ -27,7 +27,7 @@ module.exports = {
   async headers() {
     return [
       {
-        source: "/.well-known/nostr.json(.*)",
+        source: "/.well-known/(.*)",
         headers: [
           {
             key: "Access-Control-Allow-Origin",
